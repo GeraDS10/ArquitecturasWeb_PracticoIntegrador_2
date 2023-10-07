@@ -25,10 +25,10 @@ public class Estudiante {
     @Column
     private String ciudad;
 
-    @Column
+    @Column(name = "numero_libreta")
     private int numeroLibreta;
 
-    @OneToMany
+    @OneToMany(mappedBy = "estudiante", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Inscripcion> inscripciones;
 
 
@@ -51,6 +51,10 @@ public class Estudiante {
 
     public int getDni() {
         return dni;
+    }
+
+    public void setDni(int dni) {
+        this.dni = dni;
     }
 
     public String getNombre() {
@@ -103,5 +107,18 @@ public class Estudiante {
 
     public List<Inscripcion> getInscripciones() {
         return new ArrayList<Inscripcion>(this.inscripciones);
+    }
+
+    @Override
+    public String toString() {
+        return "Estudiante{" +
+                "dni=" + dni +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", edad=" + edad +
+                ", genero='" + genero + '\'' +
+                ", ciudad='" + ciudad + '\'' +
+                ", numeroLibreta=" + numeroLibreta +
+                '}';
     }
 }

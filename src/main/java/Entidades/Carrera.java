@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Carera")
+@Table(name = "Carrera")
 public class Carrera {
 
     @Id
@@ -15,7 +15,7 @@ public class Carrera {
     @Column
     private String nombre;
 
-    @OneToMany
+    @OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Inscripcion> inscripciones;
 
     public Carrera() {
@@ -23,6 +23,10 @@ public class Carrera {
         this.inscripciones = new ArrayList<Inscripcion>();
     }
 
+    public Carrera(int id, String nombre) {
+        this.nombre = nombre;
+        this.inscripciones = new ArrayList<Inscripcion>();
+    }
     public Carrera(String nombre) {
         this.nombre = nombre;
         this.inscripciones = new ArrayList<Inscripcion>();
@@ -30,6 +34,10 @@ public class Carrera {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -42,5 +50,13 @@ public class Carrera {
 
     public List<Inscripcion> getInscripciones() {
         return new ArrayList<Inscripcion>(this.inscripciones);
+    }
+
+    @Override
+    public String toString() {
+        return "Carrera{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                '}';
     }
 }

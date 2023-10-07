@@ -1,5 +1,7 @@
 package Repositories;
 
+import Entidades.Carrera;
+import Entidades.Estudiante;
 import Entidades.Inscripcion;
 
 public interface InscripcionRepository {
